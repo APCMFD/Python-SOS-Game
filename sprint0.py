@@ -12,8 +12,8 @@ class Player():
     def set_turn(self, turn_status):
         self.turn = turn_status
 class SOS_GAME_BOARD():
-    NUM_ROWS = 8
-    NUM_COLS = 8
+    NUM_ROWS = 6
+    NUM_COLS = 6
     board = []
     def __init__(self):
         self.create_board()
@@ -31,17 +31,16 @@ class SOS_GAME_GUI():
     WINDOW_HEIGHT = 500
     WINDOW = Tk()
     WINDOW.geometry(f"{WINDOW_WIDTH}x{WINDOW_HEIGHT}")
-    WINDOW.title("Morgan's SOS Game")
-    BUTTON_HEIGHT = 3
+    WINDOW.title("Adam's SOS Game")
+    BUTTON_HEIGHT = 4
     BUTTON_WIDTH = 6
-    RED_PLAYER_OPTION =  StringVar()
-    BLUE_PLAYER_OPTION = StringVar()
     SIMPLE_GAME = 0
     GENERAL_GAME = 1
+    RED_PLAYER_OPTION =  StringVar()
+    BLUE_PLAYER_OPTION = StringVar()
     
     def __init__(self):
         self.gameboard = SOS_GAME_BOARD()
-        self.gametype = self.SIMPLE_GAME
         
     def start(self):
         self.create_GUI_gameboard()
@@ -54,9 +53,9 @@ class SOS_GAME_GUI():
                 tile.grid(row=r, column=c, padx= 2, pady=2)
                 
         # simple and general game buttons
-        simple_game_button = Radiobutton(self.WINDOW, text='Simple Game', variable=self.gametype, value=self.SIMPLE_GAME, command=lambda: self.start_simple_game())
+        simple_game_button = Radiobutton(self.WINDOW, text='Simple Game', variable=self.gametype, value=self.SIMPLE_GAME, command=lambda: self.radio_click())
         simple_game_button.grid(row=0, column=9)
-        general_game_button = Radiobutton(self.WINDOW, text='General Game', variable=self.gametype, value=self.GENERAL_GAME, command=lambda: self.start_general_game())
+        general_game_button = Radiobutton(self.WINDOW, text='General Game', variable=self.gametype, value=self.GENERAL_GAME, command=lambda: self.radio_click())
         general_game_button.grid(row=0, column=10)
 
         # player labels
@@ -67,7 +66,9 @@ class SOS_GAME_GUI():
         
         # player S/O radio buttons
         red_player_S_button = Radiobutton(self.WINDOW, text='S', variable= self.RED_PLAYER_OPTION, value='S', command=lambda: self.radio_click())
-        red_player_S_button.grid(row=3, column=9)
+        c1 = tk.Checkbutton(self.WINDOW, text='S', variable= self.RED_PLAYER_OPTION, value='S', command=lambda: self.radio_click())
+        c1.pack()
+        c1.grid(row=3, column=9)
         red_player_O_button = Radiobutton(self.WINDOW, text='O', variable= self.RED_PLAYER_OPTION, value='O', command=lambda: self.radio_click())
         red_player_O_button.grid(row=4, column=9)
         blue_player_S_button = Radiobutton(self.WINDOW, text='S', variable= self.BLUE_PLAYER_OPTION, value='S', command=lambda: self.radio_click())
@@ -75,22 +76,6 @@ class SOS_GAME_GUI():
         blue_player_O_button = Radiobutton(self.WINDOW, text='O', variable= self.BLUE_PLAYER_OPTION, value='O', command=lambda: self.radio_click())
         blue_player_O_button.grid(row=4, column=10, padx=200)
 
-    def radio_click(self):
-        print('Red value: ', self.RED_PLAYER_OPTION.get())
-        print('Blue value: ', self.BLUE_PLAYER_OPTION.get())
-    def start_simple_game(self):
-        messagebox.showinfo('Game', 'Simple Game Started!')
-    def start_general_game(self):
-        messagebox.showinfo('Game', 'General Game Started!')
-
-    def make_move(self, row, col):
-        print('row: ', row, ' col: ', col)
-        tile = self.gameboard.get_cell_value(row, col)
-        if self.RED_PLAYER_OPTION.get() == 'S':
-            tile['text'] = 'S'
-        elif self.RED_PLAYER_OPTION.get() == 'O':
-            tile['text'] = 'O'
-            
 # MAIN
 game = SOS_GAME_GUI()
 game.start()
