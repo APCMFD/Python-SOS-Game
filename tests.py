@@ -31,7 +31,7 @@ class Test_SOS_GUI(unittest.TestCase):
         return self.assertEqual(self.game.blue_player.option.get(), 'S')
       
     def test_red_move(self):
-        # tests making a move as the red player
+        # tests making a 'S' move as the red player in a simple game
         self.game.start_simple()
         self.game.set_r_turn()
         self.game.red_player.option.set('S')
@@ -39,7 +39,7 @@ class Test_SOS_GUI(unittest.TestCase):
         return self.assertEqual(self.game.board[0][1]['text'], self.game.red_player.option.get())
 
     def test_blue_move(self):
-        # tests making a move as the blue player
+        # tests making a 'O' move as the blue player in a simple game
         self.game.start_simple()
         self.game.set_b_turn()
         self.game.blue_player.option.set('O')
@@ -47,8 +47,37 @@ class Test_SOS_GUI(unittest.TestCase):
         return self.assertEqual(self.game.board[0][1]['text'], self.game.blue_player.option.get())
 
     def test_invalid_move(self):
-        # tests making a move over a cell that's already been used
+        # tests making a move over a cell that's already been used in a simple game
         self.game.start_simple()
+        self.game.set_r_turn()
+        self.game.red_player.option.set('S')
+        self.game.move(2,2)
+        
+        # blue player tries to place an 'O' in the spot that the red player placed and 'S'
+        self.game.blue_player.option.set('O')
+        self.game.move(2,2)
+
+        return self.assertEqual(self.game.board[2][2]['text'], 'S')
+    
+    def test_red_move_gen(self):
+        # tests making a 'S' move as the red player in a general game
+        self.game.start_general()
+        self.game.set_r_turn()
+        self.game.red_player.option.set('S')
+        self.game.move(0,1)
+        return self.assertEqual(self.game.board[0][1]['text'], self.game.red_player.option.get())
+
+    def test_blue_move_gen(self):
+        # tests making a 'O' move as the blue player in a general game
+        self.game.start_general()
+        self.game.set_b_turn()
+        self.game.blue_player.option.set('O')
+        self.game.move(0,1)
+        return self.assertEqual(self.game.board[0][1]['text'], self.game.blue_player.option.get())
+
+    def test_invalid_move_gen(self):
+        # tests making a move over a cell that's already been used in a general game
+        self.game.start_general()
         self.game.set_r_turn()
         self.game.red_player.option.set('S')
         self.game.move(2,2)
