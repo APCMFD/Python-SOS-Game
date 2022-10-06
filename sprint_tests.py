@@ -1,5 +1,5 @@
 import unittest
-from main import GAME_GUI
+from finished_sprint2 import GAME_GUI
 
 class Test_SOS_GUI(unittest.TestCase):
 
