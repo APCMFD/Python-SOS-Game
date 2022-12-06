@@ -1,0 +1,6 @@
+{"date_time": "12052022 18:17:20", "gametype": "Simple Game", "board_size": 3, "winner": "Red Player"}
+{"date_time": "12052022 18:20:47", "gametype": "General Game", "board_size": 3, "red_sos_count": 3, "blue_sos_count": 1, "winner": "Red Player"}
+{"date_time": "12052022 18:21:31", "gametype": "Simple Game", "board_size": 3, "winner": "Red Player"}
+{"date_time": "12052022 18:22:23", "gametype": "General Game", "board_size": 4, "red_sos_count": 1, "blue_sos_count": 6, "winner": "Blue Player"}
+{"date_time": "12052022 18:23:00", "gametype": "Simple Game", "board_size": 3, "winner": "Red Player"}
+{"date_time": "12052022 18:23:35", "gametype": "General Game", "board_size": 5, "red_sos_count": 6, "blue_sos_count": 5, "winner": "Red Player"}
